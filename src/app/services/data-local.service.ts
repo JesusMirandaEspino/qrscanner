@@ -50,8 +50,12 @@ export class DataLocalService {
 
       case 'http':
           this.iab.create('https://ionicframework.com/');
-
           break;
+
+      case 'geo':
+          this.navCtr.navigateForward(`/tabs/map/${resgistro.text}`);
+          break;
+
 
         default: break;
 
