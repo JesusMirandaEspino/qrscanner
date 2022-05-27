@@ -11,6 +11,9 @@ export class DataLocalService {
   public guardados: Registro[] = [];
   private _storage: Storage | null = null;
 
+
+  // pk.eyJ1IjoiamVzdXNtaXJhbmRhIiwiYSI6ImNsM25yYzI2cTBmdTczanBla2oxNzNyN3AifQ.2bvOozjRsLKfU6rcTXaPEA
+
   constructor(  private storage: Storage,
                 private navCtr: NavController,
                 private iab: InAppBrowser) {
