@@ -24,7 +24,12 @@ export class Tab1Page {
       console.log('Barcode data', barcodeData);
       }).catch(err => {
           console.log('Error', err);
-          this.dataLocalService.guardarRegistro( 'QRCode', 'https://ionicframework.com/docs/native/barcode-scanner' );
+
+          //this.dataLocalService.guardarRegistro( 'QRCode', 'https://ionicframework.com/docs/native/barcode-scanner' );
+          this.dataLocalService.guardarRegistro( 'geo', 'geo:40.73151796986687,-74.06087294062502' );
+
+
+
       });
   }
 
