@@ -16,8 +16,10 @@ export class Tab2Page {
   }
 
 
+
+
   enviarCorreo(){
-    // code
+    this.dataLocalService.enviarCorreo();
   }
 
   abrirRegistro( registro: Registro ){

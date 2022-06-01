@@ -61,9 +61,18 @@ export class DataLocalService {
 
 
         default: break;
-
     }
+  }
 
+  enviarCorreo(){
+    const arregloTemp = [];
+    const Titulos = 'Tipo, Formato, Creado en, Texto\n';
+    arregloTemp.push( Titulos );
+    this.guardados.forEach( registro => {
+      const linea = `${registro.type}, ${registro.format}, ${registro.created}, ${registro.text.replace(',', ' ')}\n`
+      arregloTemp.push( linea );
+    });
+    console.log(arregloTemp.join('') );
 
   }
 
