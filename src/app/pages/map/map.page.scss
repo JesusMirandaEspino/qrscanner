@@ -3,3 +3,12 @@
     height: 100% !important;
     background-color: #f6f6f4;
 }
+
+
+.btn-back{
+  position:fixed;
+  top: 80px;
+  right:12px;
+  font-size:30px;
+  z-index: 99;
+}
