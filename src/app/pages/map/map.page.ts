@@ -49,6 +49,8 @@ export class MapPage implements OnInit, AfterViewInit {
 
         map.resize();
 
+        new mapboxgl.Marker().setLngLat([ this.lng, this.lat]).addTo(map);
+
         // The 'building' layer in the Mapbox Streets
         // vector tileset contains building height data
         // from OpenStreetMap.
