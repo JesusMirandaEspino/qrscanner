@@ -3,6 +3,8 @@ import { Registro } from '../models/registro';
 import { Storage } from '@ionic/storage-angular';
 import { NavController } from '@ionic/angular';
 import { InAppBrowser } from '@awesome-cordova-plugins/in-app-browser/ngx';
+import { File } from '@awesome-cordova-plugins/file/ngx';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -16,7 +18,8 @@ export class DataLocalService {
 
   constructor(  private storage: Storage,
                 private navCtr: NavController,
-                private iab: InAppBrowser) {
+                private iab: InAppBrowser,
+                private file: File) {
 
     this.init();
 
@@ -74,6 +77,23 @@ export class DataLocalService {
     });
     console.log(arregloTemp.join('') );
 
+    this.crearArchivoFisico( arregloTemp.join('') );
+
+  }
+
+
+  crearArchivoFisico( text: string ){
+    this.file.checkFile( this.file.dataDirectory, 'registro.csv' ).then( (existe) => {
+      this.escribirEnArchivo( text );
+    }).catch( error => {
+      return this.file.createFile( this.file.dataDirectory, 'registro.csv', false ).then( creado => {
+        this.escribirEnArchivo( text );
+      }).catch( error2 => { console.log( error2 ) });
+    });
+  }
+
+  async escribirEnArchivo( text: string ){
+    await this.file.writeExistingFile( this.file.dataDirectory, 'registro.csv', text );
   }
 
 }
