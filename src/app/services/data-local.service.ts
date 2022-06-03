@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage-angular';
 import { NavController } from '@ionic/angular';
 import { InAppBrowser } from '@awesome-cordova-plugins/in-app-browser/ngx';
 import { File } from '@awesome-cordova-plugins/file/ngx';
+import { EmailComposer } from '@awesome-cordova-plugins/email-composer/ngx';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,8 @@ export class DataLocalService {
   constructor(  private storage: Storage,
                 private navCtr: NavController,
                 private iab: InAppBrowser,
-                private file: File) {
+                private file: File,
+                private emailComposer: EmailComposer) {
 
     this.init();
 
@@ -94,6 +96,21 @@ export class DataLocalService {
 
   async escribirEnArchivo( text: string ){
     await this.file.writeExistingFile( this.file.dataDirectory, 'registro.csv', text );
+    const archivo = `${this.file.dataDirectory}/registro.csv`
+
+  const email = {
+    to: 'max@mustermann.de',
+    attachments: [
+      archivo
+    ],
+    subject: 'Cordova Icons',
+    body: 'How are you? Nice greetings from Leipzig',
+    isHtml: true
+  }
+
+  // Send a text message using default options
+  this.emailComposer.open(email);
+
   }
 
 }
